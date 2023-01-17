@@ -11,8 +11,8 @@ datasource db {
 }
 
 model Habit {
-  id String @default(uuid()) @id
-  name String 
+  id         String   @id @default(uuid())
+  name       String
   creadtedAt DateTime
 
   @@map(name: "habits")

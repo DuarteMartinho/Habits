@@ -42,6 +42,8 @@ export function HabitDay(props: HabitProps) {
 
 
     const completedPercentage = props.possible > 0 ? Math.round((props.completed / props.possible) * 100)  : 0;
+    const today = dayjs().startOf('day').toDate();
+    const isCurrentDay = dayjs(props.date).isSame(today, 'day');
 
     return (
         <Popover.Root>
@@ -56,6 +58,7 @@ export function HabitDay(props: HabitProps) {
                         'bg-violet-700 border-violet-600': completedPercentage >= 40 && completedPercentage < 60,
                         'bg-violet-600 border-violet-500': completedPercentage >= 60 && completedPercentage < 80,
                         'bg-violet-500 border-violet-400': completedPercentage >= 80,
+                        'border-white': isCurrentDay,
                     }
                 )
             } />

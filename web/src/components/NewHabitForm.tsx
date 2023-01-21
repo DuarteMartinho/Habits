@@ -4,7 +4,6 @@ import { api } from "../lib/axios";
 import { CheckboxForm } from "./CheckboxForm";
 
 
-
 const availableWeekdays = [
     "Sunday",
     "Monday",
@@ -15,7 +14,11 @@ const availableWeekdays = [
     "Saturday",
 ]
 
-export function NewHabitForm() {
+interface NewHabitFormProps {
+    updateSummary: () => void;
+}
+
+export function NewHabitForm(props: NewHabitFormProps) {
 
     const [title, setTitle] = useState('');
     const [weekDays, setWeekDays] = useState<number[]>([]);
@@ -32,10 +35,12 @@ export function NewHabitForm() {
             weekDays
         })
 
+        await props.updateSummary();
+
         setTitle('');
         setWeekDays([]);
         
-        alert('Habit created successfully!');   
+        alert('Habit created successfully!');
     }
 
     return (
@@ -51,7 +56,7 @@ export function NewHabitForm() {
                 placeholder="e.g. Read 30 minutes a day, drink water, etc"
                 autoFocus
                 value={title}
-                className="p-4 rounded-lg mt-3 bg-zinc-800 text-white placeholder:text-zinc-400"
+                className="p-4 rounded-lg mt-3 bg-zinc-800 text-white placeholder:text-zinc-400 focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-zinc-900"
                 onChange={event => setTitle(event.target.value)}
             />
 
@@ -82,7 +87,7 @@ export function NewHabitForm() {
 
             <button 
                 type="submit" 
-                className="mt-6 rounded-lg p-4 flex items-center justify-center gap-3 font-semibold bg-green-600 hover:bg-green-500"
+                className="mt-6 rounded-lg p-4 flex items-center justify-center gap-3 font-semibold bg-green-600 hover:bg-green-500 transition-colors focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-zinc-900"
             >
                 <Check size={20} weight="bold" />
                 Confirm

@@ -5,7 +5,8 @@
   "main": "./src/server.ts",
   "scripts": {
     "dev": "npx tsx watch src/server.ts",
-    "build:functions": "netlify-lambda build functions --config ./webpack.config.netlify.js"
+    "tsc": "tsc",
+    "start:prod": "node build/src/server.js"
   },
   "keywords": [],
   "author": "",

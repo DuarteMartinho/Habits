@@ -14,13 +14,10 @@ app.register(cors)
 app.register(appRoutes)
 
 app.listen({
-    port: 3000,
+    port: 80,
     host: '0.0.0.0',
 }).then(() => {
-    console.log('Server listening on port 3333')
+    console.log('Server listening on port 80')
 })
 
-export default async (req: any, res: any) => {
-    await app.ready();
-    app.server.emit('request', req, res);
-}
+module.exports = app;

@@ -37,9 +37,7 @@ export function Main() {
 
     async function _updateSummary() {
         await api.get('/summary').then(res => {
-                console.log(res.data);
                 setSummary(res.data);
-                console.log("UPDATED");
             }
         )
         return true;
@@ -47,7 +45,6 @@ export function Main() {
 
     useEffect(() => {
         api.get('/summary').then(res => {
-                console.log(res.data);
                 setSummary(res.data);
             }
         )

@@ -9,7 +9,7 @@ The project consists of a platform for registering teachers and students, where 
 
 ## To Do
 
-- [x] Authentication
+- [x] Authentication (Social Login ?)
 - [x] Notifications (Push / Service Workers)
 - [x] Public profiles
 

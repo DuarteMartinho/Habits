@@ -33,6 +33,7 @@ type Summary = {
 };
 
 export function Main() {
+    const [loading, setLoading] = useState<boolean>(true)
     const [summary, setSummary] = useState<Summary[]>([]);
 
     async function _updateSummary() {
@@ -44,12 +45,30 @@ export function Main() {
     }
 
     useEffect(() => {
-        api.get('/summary').then(res => {
-                setSummary(res.data);
-            }
-        )
+        fetchData();
     }, [])
 
+    async function fetchData() {
+        setLoading(true);
+        await api.get('/summary').then(res => {
+                setSummary(res.data);
+            }
+        );
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+    }
+    
+
+
+    if (loading) {
+        return (
+            <div className="w-full h-screen flex items-center justify-center">
+                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-violet-500"></div>
+            </div>
+        )
+    }
+    
     return (
         <div className="w-full max-w-5xl px-6 flex flex-col gap-16">
         
@@ -96,8 +115,11 @@ export function Main() {
                 </div>
                         
                 <div className="grid grid-rows-7 grid-flow-col gap-3">
-                    {summary.length > 0 && summaryDates.map(
+                    {
+                    
+                    summaryDates.length > 0 && summaryDates.map(
                         (date, i) => {
+                            
                             const dayInSummary = summary.find(day => {
                                 return dayjs(date).isSame(day.date, 'day')
                             })
@@ -132,3 +154,4 @@ export function Main() {
         </div>
     )
 }
+

@@ -2,10 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/server.ts",
   "scripts": {
     "dev": "npx tsx watch src/server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx tsx build src/server.ts",
+    "start": "npx tsx start src/server.ts",
+    "server": "npx tsx src/server.ts"
   },
   "keywords": [],
   "author": "",

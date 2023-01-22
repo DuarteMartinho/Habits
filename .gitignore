@@ -39,3 +39,5 @@ mobile/*.key
 mobile/*.mobileprovision
 mobile/*.orig.*
 mobile/web-build/
+# Local Netlify folder
+.netlify

@@ -37,6 +37,10 @@ export async function appRoutes(app: FastifyInstance) {
         })
     })
 
+    app.get('/', async (request) => {
+        return 'Welcome to the API'
+    })
+
     
     app.get('/day', async (request) => {
         const { date } = getDayBody.parse(request.query)
